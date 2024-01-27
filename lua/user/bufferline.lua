@@ -7,7 +7,7 @@ bufferline.setup {
   options = {
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    offsets = { { filetype = "NvimTree", text = "File Explorer", padding = 1 } },
     separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
   },
 
@@ -35,7 +35,7 @@ bufferline.setup {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-   
+
     tab_selected = {
       fg = { attribute = "fg", highlight = "Normal" },
       bg = { attribute = "bg", highlight = "Normal" },
@@ -101,3 +101,33 @@ bufferline.setup {
     },
   },
 }
+
+-- bufferline.setup {
+--   options = {
+--     mode = "tabs",
+--     separator_style = "padded_slant",
+--     -- close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+--     -- right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+--     offsets = { { filetype = "NvimTree", text = "File Explorer", padding = 1 } },
+--     -- separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+--
+--     name_formatter = function(buf)  -- buf contains:
+--       -- return vim.api.nvim_tabpage_get_number(buf.tabnr)
+--
+--       local name_success, name = pcall(function ()
+--         return vim.fn.fnamemodify(vim.fn.getcwd(buf.tabnr), ':t')
+--       end)
+--
+--       if not name_success then
+--         return "NEW TAB"
+--       end
+--       return name
+--
+--       -- name                | str        | the basename of the active file
+--       -- path                | str        | the full path of the active file
+--       -- bufnr (buffer only) | int        | the number of the active buffer
+--       -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
+--       -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
+--     end,
+--   },
+-- }

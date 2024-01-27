@@ -30,10 +30,18 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
-	end,
+-- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+-- 	callback = function()
+-- 		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+-- 	end,
+-- })
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -43,18 +51,18 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	callback = function()
-		vim.cmd("hi link illuminatedWord LspReferenceText")
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-	callback = function()
-	local line_count = vim.api.nvim_buf_line_count(0)
-		if line_count >= 5000 then
-			vim.cmd("IlluminatePauseBuf")
-		end
-	end,
-})
-
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+-- 	callback = function()
+-- 		vim.cmd("hi link illuminatedWord LspReferenceText")
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+-- 	callback = function()
+-- 	local line_count = vim.api.nvim_buf_line_count(0)
+-- 		if line_count >= 5000 then
+-- 			vim.cmd("IlluminatePauseBuf")
+-- 		end
+-- 	end,
+-- })
+--

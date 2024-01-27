@@ -1,12 +1,15 @@
 local servers = {
-	"sumneko_lua",
+	"lua_ls",
 	"cssls",
 	"html",
 	"tsserver",
 	"pyright",
+	"ruff-lsp",
+	--"pylint",
 	"bashls",
 	"jsonls",
 	"yamlls",
+  --"kotlin_language_server",
 }
 
 local settings = {
