@@ -10,11 +10,6 @@ local M = {
       commit = "78c49ca7d2f7ccba2115c11422c037713c978ad1",
     },
     {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "VeryLazy",
-      commit = "92e688f013c69f90c9bbd596019ec10235bc51de",
-    },
-    {
       "windwp/nvim-ts-autotag",
       event = "VeryLazy",
       commit = "6be1192965df35f94b8ea6d323354f7dc7a557e4",
@@ -45,11 +40,6 @@ function M.config()
     },
 
     autotag = { enable = true },
-
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
 
     autopairs = { enable = true },
 

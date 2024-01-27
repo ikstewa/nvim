@@ -7,7 +7,6 @@ local M = {
 function M.config()
   local mappings = {
     ["q"] = { "<cmd>confirm q<CR>", "Quit" },
-    ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
     b = {
@@ -43,17 +42,20 @@ function M.config()
       d = { "<cmd>Lazy debug<cr>", "Debug" },
     },
 
-    f = {
-      name = "Find",
-      b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    s = {
+      name = "Search",
+      b = { "<cmd>Telescope git_branches<cr>", "Branch" },
       c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+      d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+      e = { "<cmd>lua require('telescope').extensions['emoji'].emoji()<cr>", "Emoji" },
       f = { "<cmd>Telescope find_files<cr>", "Find files" },
       p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-      t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+      g = { "<cmd>Telescope live_grep theme=ivy<cr>", "Grep" },
       s = { "<cmd>Telescope grep_string<cr>", "Find String" },
+      w = { "<cmd>Telescope grep_string<cr>", "Find Word" },
       h = { "<cmd>Telescope help_tags<cr>", "Help" },
       H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-      i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
+      --i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
       l = { "<cmd>Telescope resume<cr>", "Last Search" },
       M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
       r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
@@ -149,7 +151,6 @@ function M.config()
   -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
   -- see https://neovim.io/doc/user/map.html#:map-cmd
   local vmappings = {
-    ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
     l = {
       name = "LSP",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
