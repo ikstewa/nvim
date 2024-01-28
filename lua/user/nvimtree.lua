@@ -1,7 +1,7 @@
 local M = {
   "nvim-tree/nvim-tree.lua",
   event = "VeryLazy",
-  commit = "40b9b887d090d5da89a84689b4ca0304a9649f62",
+  tag = "v0.99"
 }
 
 function M.config()

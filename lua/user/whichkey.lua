@@ -58,6 +58,7 @@ function M.config()
       --i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
       l = { "<cmd>Telescope resume<cr>", "Last Search" },
       M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+      n = { "<cmd>Telescope notify<cr>", "Man Pages" },
       r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
       R = { "<cmd>Telescope registers<cr>", "Registers" },
       k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },

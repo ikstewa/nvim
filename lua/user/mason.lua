@@ -14,6 +14,7 @@ M.servers = {
   "tsserver",
   "astro",
   "pyright",
+  "ruff_lsp",
   "bashls",
   "jsonls",
   "yamlls",

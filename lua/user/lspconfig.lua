@@ -1,29 +1,14 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  commit = "e49b1e90c1781ce372013de3fa93a91ea29fc34a",
+  tag = "v0.1.7",
   dependencies = {
     {
       "folke/neodev.nvim",
-      commit = "b094a663ccb71733543d8254b988e6bebdbdaca4",
+      tag = "v2.5.2",
     },
   },
 }
-
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-end
-
-M.on_attach = function(client, bufnr)
-  lsp_keymaps(bufnr)
-end
 
 function M.common_capabilities()
   local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -55,6 +40,7 @@ function M.config()
     "tsserver",
     "astro",
     "pyright",
+    "ruff_lsp",
     "bashls",
     "jsonls",
     "yamlls",
@@ -96,9 +82,24 @@ function M.config()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+
+      local opts = { noremap = true, silent = true }
+      local keymap = vim.api.nvim_buf_set_keymap
+      keymap(ev.buf, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+      keymap(ev.buf, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      keymap(ev.buf, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+      keymap(ev.buf, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+      keymap(ev.buf, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+      keymap(ev.buf, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+
+    end,
+  })
+
   for _, server in pairs(servers) do
     local opts = {
-      on_attach = M.on_attach,
       capabilities = M.common_capabilities(),
     }
 
