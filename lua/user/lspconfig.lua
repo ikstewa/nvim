@@ -89,10 +89,13 @@ function M.config()
       local opts = { noremap = true, silent = true }
       local keymap = vim.api.nvim_buf_set_keymap
       keymap(ev.buf, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-      keymap(ev.buf, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      -- keymap(ev.buf, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      keymap(ev.buf, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
       keymap(ev.buf, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-      keymap(ev.buf, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-      keymap(ev.buf, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+      -- keymap(ev.buf, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+      keymap(ev.buf, "n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
+      -- keymap(ev.buf, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+      keymap(ev.buf, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
       keymap(ev.buf, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 
     end,
