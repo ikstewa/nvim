@@ -1,7 +1,8 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
-  commit = "afa103385a2b5ef060596ed822ef63276ae88016",
+  tag = "v0.10.0",
+  -- commit = "afa103385a2b5ef060596ed822ef63276ae88016",
   build = ":TSUpdate",
   dependencies = {
     {
@@ -23,8 +24,11 @@ local M = {
 }
 function M.config()
   require("nvim-treesitter.configs").setup {
-    --ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
-    ensure_installed = "all",
+    -- Only install essential parsers at startup
+    -- ensure_installed = { "lua", "vim", "markdown", "bash" },
+    ensure_installed = { "lua", "vim", "markdown", "markdown_inline", "bash", "python", "java" },
+    -- Automatically install parsers when needed
+    auto_install = true,
     ignore_install = { "" },
     sync_install = false,
     highlight = {

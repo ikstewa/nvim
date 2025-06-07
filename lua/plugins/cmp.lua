@@ -1,7 +1,8 @@
 local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
-  commit = "d3a3056204e1a9dbb7c7fe36c114dc43b681768c",
+  tag = "v0.0.2",
+  -- commit = "d3a3056204e1a9dbb7c7fe36c114dc43b681768c",
   dependencies = {
     {
       "hrsh7th/cmp-nvim-lsp",
@@ -64,7 +65,7 @@ function M.config()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
   end
 
-  local icons = require "user.icons"
+  local icons = require "util.icons"
 
   cmp.setup {
     snippet = {

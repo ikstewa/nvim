@@ -1,6 +1,7 @@
 local M = {
   "numToStr/Comment.nvim",
-  lazy = false,
+  lazy = true, -- Changed from false to true
+  event = "VeryLazy", -- Add event-based loading
   commit = "0236521ea582747b58869cb72f70ccfa967d2e89",
   --dependencies = {
   --  {

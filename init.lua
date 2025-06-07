@@ -1,39 +1,22 @@
-require "user.launch"
-require "user.options"
-require "user.keymaps"
-require "user.autocmds"
-spec "user.notify"
-spec "user.colorscheme"
-spec "user.devicons"
-spec "user.treesitter"
-spec "user.mason"
-spec "user.schemastore"
-spec "user.lspconfig"
-spec "user.dap"
-spec "user.dapui"
-spec "user.nvim-jdtls"
-spec "user.navic"
-spec "user.breadcrumbs"
-spec "user.null-ls"
-spec "user.illuminate"
-spec "user.telescope"
-spec "user.telescope-tabs"
-spec "user.telescope-emoji"
-spec "user.nvimtree"
-spec "user.fidget"
-spec "user.lualine"
-spec "user.whichkey"
-spec "user.cmp"
-spec "user.autopairs"
-spec "user.comment"
-spec "user.gitsigns"
-spec "user.neogit"
-spec "user.diffview"
-spec "user.indentline"
-spec "user.alpha"
---spec "user.netrw"
-spec "user.project"
-spec "user.toggleterm"
-spec "user.bufdelete"
-spec "user.pkl-neovim"
-require "user.lazy"
+-- Main entry point
+
+-- require("config.profile").startup()
+
+-- Only load the absolute minimum at startup
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Delay loading of core modules
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    require("config.autocmds")
+  end,
+})
+
+-- Load core configuration
+require("config.options")
+require("config.keymaps")
+
+-- Setup plugins
+require("config.lazy").setup()

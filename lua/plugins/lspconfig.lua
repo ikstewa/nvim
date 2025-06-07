@@ -1,7 +1,7 @@
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  tag = "v0.1.7",
+  tag = "v2.2.0",
   dependencies = {
     {
       "folke/neodev.nvim",
@@ -31,7 +31,7 @@ end
 
 function M.config()
   local lspconfig = require "lspconfig"
-  local icons = require "user.icons"
+  local icons = require "util.icons"
 
   local servers = {
     "lua_ls",
@@ -40,7 +40,7 @@ function M.config()
     -- "tsserver",
     "astro",
     "pyright",
-    -- "ruff",
+    "ruff",
     "bashls",
     "jsonls",
     "yamlls",

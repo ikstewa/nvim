@@ -1,7 +1,7 @@
 local M = {
   "nvim-tree/nvim-tree.lua",
   event = "VeryLazy",
-  tag = "v0.99"
+  tag = "v1.12"
 }
 
 function M.config()
@@ -21,7 +21,7 @@ function M.config()
     vim.keymap.set("n", "<S-k>", api.node.open.preview, opts "Open Preview")
   end
 
-  local icons = require "user.icons"
+  local icons = require "util.icons"
 
   require("nvim-tree").setup {
     on_attach = my_on_attach,
