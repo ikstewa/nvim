@@ -37,15 +37,16 @@ function M.config()
     "lua_ls",
     "cssls",
     "html",
-    "tsserver",
+    -- "tsserver",
     "astro",
     "pyright",
-    "ruff_lsp",
+    -- "ruff",
     "bashls",
     "jsonls",
     "yamlls",
     "marksman",
     "tailwindcss",
+    "gopls",
   }
 
   local default_diagnostic_config = {

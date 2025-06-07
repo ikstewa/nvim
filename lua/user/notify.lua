@@ -1,5 +1,6 @@
 local M = {
   "rcarriga/nvim-notify",
+  tag = "v3.15.0",
 }
 
 function M.config()

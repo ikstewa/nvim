@@ -2,6 +2,8 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt_local.cmdheight = 2 -- more space in the neovim command line for displaying messages
 
+vim.lsp.set_log_level("INFO")
+
 local status_jdtls, jdtls = pcall(require, "jdtls")
 if not status_jdtls then
   vim.notify("Failed to load jdtls")
@@ -12,11 +14,11 @@ if not status_jdtls_dap then
   vim.notify("Failed to load jdtls.dap")
   return
 end
-local status_jdtls_setup, jdtls_setup = pcall(require, "jdtls.setup")
-if not status_jdtls_setup then
-  vim.notify("Failed to load jdtls.setup")
-  return
-end
+-- local status_jdtls_setup, jdtls_setup = pcall(require, "jdtls.setup")
+-- if not status_jdtls_setup then
+--   vim.notify("Failed to load jdtls.setup")
+--   return
+-- end
 
 -- Determine OS
 local home = os.getenv "HOME"
@@ -29,8 +31,8 @@ else
 end
 
 -- Find root of project
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml"--[[ , "build.gradle" ]] }
-local root_dir = jdtls_setup.find_root(root_markers)
+local root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml"--[[ , "build.gradle" ]] })
+
 if root_dir == "" then
   vim.notify("Failed to determine project root path")
   return
@@ -45,7 +47,7 @@ local path_to_jdebug = path_to_mason_packages .. "/java-debug-adapter"
 local path_to_jtest = path_to_mason_packages .. "/java-test"
 
 local path_to_config = path_to_jdtls .. "/config_" .. CONFIG_OS
-local lombok_path = path_to_jdtls .. "/lombok.jar"
+-- local lombok_path = path_to_jdtls .. "/lombok.jar"
 -- local path_to_jar = path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar"
 local path_to_jar = vim.fn.glob(path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 
@@ -58,7 +60,7 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(path_to_jtest .. "/extension/serv
 local on_attach = function(_, bufnr)
   jdtls.setup_dap({ hotcodereplace = "auto" })
   jdtls_dap.setup_dap_main_class_configs()
-  jdtls_setup.add_commands()
+  -- jdtls_setup.add_commands()
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
@@ -108,7 +110,7 @@ config.cmd = {
   "-Dlog.protocol=true",
   "-Dlog.level=ALL",
   "-Xmx1g",
-  "-javaagent:" .. lombok_path,
+  -- "-javaagent:" .. lombok_path,
   "--add-modules=ALL-SYSTEM",
   "--add-opens",
   "java.base/java.util=ALL-UNNAMED",
