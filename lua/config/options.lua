@@ -3,3 +3,7 @@
 -- Add any additional options here
 
 vim.g.autoformat = false
+
+-- Use "ghost" completion for AI instead of standard menu
+-- https://github.com/LazyVim/LazyVim/discussions/6089
+vim.g.ai_cmp = false
