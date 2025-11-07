@@ -71,16 +71,16 @@ return {
             --   icon = " ",
             --   height = 7,
             -- },
-            {
-              icon = " ",
-              title = "Open PRs",
-              cmd = "gh pr list -L 20",
-              key = "P",
-              action = function()
-                vim.fn.jobstart("gh pr list --web", { detach = true })
-              end,
-              height = 20,
-            },
+            -- {
+            --   icon = " ",
+            --   title = "Open PRs",
+            --   cmd = "gh pr list -L 20",
+            --   key = "P",
+            --   action = function()
+            --     vim.fn.jobstart("gh pr list --web", { detach = true })
+            --   end,
+            --   height = 20,
+            -- },
           }
           return vim.tbl_map(function(cmd)
             return vim.tbl_extend("force", {
